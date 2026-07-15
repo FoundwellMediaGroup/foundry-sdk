@@ -4,6 +4,4 @@ declare(strict_types=1);
 
 namespace Foundwell\Exceptions;
 
-class AuthorizationException extends ApiException
-{
-}
+class AuthorizationException extends ApiException {}

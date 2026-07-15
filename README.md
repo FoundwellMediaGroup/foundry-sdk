@@ -2,52 +2,64 @@
 
 Official PHP SDK for connecting Foundwell applications to the Foundwell Platform.
 
-## Status
+**Version:** 0.2.0-alpha  
+**PHP:** 7.4 or newer  
+**Dependencies:** none beyond PHP and the cURL extension for live requests
 
-**Version:** 0.1.0-alpha  
-**Phase:** Foundation only
+## Current scope
 
-This release establishes the SDK's public namespace, configuration model, contracts, exception hierarchy, autoloading, and repository conventions. It intentionally does not perform network requests yet.
+This release provides the shared networking layer used by future capability services:
 
-## Requirements
+- validated configuration
+- immutable requests and responses
+- cURL transport behind a replaceable interface
+- bearer API-key authentication
+- product and SDK identification headers
+- JSON request and response handling
+- bounded retries for transient failures
+- configurable timeouts
+- logger hooks
+- request-ID-aware exceptions
 
-- PHP 7.4 or newer
-- No framework required
-- Composer optional
+Licensing, updates, downloads, health, support, and telemetry services remain contracts only. Licensing implementation is planned for v0.3.0-alpha.
 
-## Quick Start
+## Installation without Composer
+
+Copy the repository into the product and load:
 
 ```php
-require __DIR__ . '/autoload.php';
+require '/path/to/foundwell-sdk-php/autoload.php';
+```
 
+## Composer-compatible installation
+
+```bash
+composer require foundwell/sdk-php
+```
+
+The package is currently private and is not published to Packagist.
+
+## Configuration
+
+```php
 use Foundwell\Client;
 use Foundwell\Config;
 
 $config = new Config(
     'https://license.foundwellmedia.com',
     'stationos',
-    '0.1.0-alpha'
+    '0.1.0-alpha',
+    getenv('FOUNDWELL_API_KEY') ?: null
 );
 
-$client = new Client($config);
+$foundwell = new Client($config);
 ```
 
-## Scope
-
-The SDK will eventually provide reusable clients for licensing, updates, downloads, health reporting, support, and telemetry.
-
-It will not contain StationOS-specific business logic, customer portal UI, platform administration, or database migrations.
-
-## Roadmap
-
-- **0.1.x:** Foundation, contracts, configuration, exceptions
-- **0.2.x:** HTTP transport, authentication, retries, logging
-- **0.3.x:** Licensing and offline validation cache
-- **0.4.x:** Updates, downloads, and release manifests
-- **0.5.x:** Health, telemetry, and support services
-
-## Testing
+## Tests
 
 ```bash
 php tests/smoke.php
+php tests/networking.php
 ```
+
+The networking tests use an in-memory fake transport and do not contact the live Platform.

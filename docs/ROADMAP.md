@@ -1,38 +1,40 @@
-# Roadmap
+# Foundwell SDK PHP Roadmap
 
-## 0.1.x — Foundation
+## v0.1.x — Foundation — Complete
 
-- Namespace and repository structure
+- Repository structure
+- Public namespace
 - Configuration
-- Contracts
-- Exceptions
-- Documentation
+- Service contracts
+- Exception hierarchy
+- Autoloading and documentation
 
-## 0.2.x — Transport
+## v0.2.x — Networking — Complete
 
-- HTTP client abstraction
+- HTTP requests and responses
+- cURL transport
 - Authentication headers
-- Request IDs
-- Timeouts and retry policy
-- Logger integration
+- Retry and timeout policy
+- Logging hooks
+- Request ID propagation
 
-## 0.3.x — Licensing
+## v0.3.x — Licensing
 
-- Activate
-- Validate
-- Deactivate
-- Signed offline cache
-- Grace-period behavior
+- Activation
+- Validation
+- Deactivation
+- Typed license models
+- Integrity-protected offline cache
 
-## 0.4.x — Delivery
+## v0.4.x — Updates and Downloads
 
-- Update checks
 - Release manifests
-- Downloads
-- Checksum verification
+- Channel selection
+- Checksums
+- Secure downloads
 
-## 0.5.x — Operations
+## v0.5.x — Health and Telemetry
 
-- Health reporting
-- Telemetry
+- Health reports
+- Installation telemetry
 - Support integration

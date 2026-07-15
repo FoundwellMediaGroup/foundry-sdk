@@ -1,12 +1,18 @@
 # Changelog
 
-## 0.1.0-alpha — 2026-07-15
+## 0.2.0-alpha — Networking Layer
 
-- Established the `Foundwell\\` public namespace.
-- Added immutable SDK configuration.
-- Added the root SDK client.
-- Added service contracts for licensing, updates, downloads, health, support, and telemetry.
-- Added a standard exception hierarchy.
-- Added Composer and standalone autoloading support.
-- Added initial documentation, example, and smoke test.
-- No Platform network communication is included in this release.
+- Added immutable HTTP request and response objects.
+- Added cURL transport behind a transport interface.
+- Added common HTTP client with JSON encoding and decoding.
+- Added bearer API-key authentication and product identification headers.
+- Added bounded exponential retry handling for transient failures.
+- Added configurable connection and request timeouts.
+- Added logger interface and no-op default logger.
+- Added typed authentication, authorization, connection, timeout, and API failures.
+- Added Platform request IDs to API exceptions.
+- Added mockable transport and offline networking tests.
+
+## 0.1.0-alpha — Foundation
+
+- Established public namespace, configuration, client, contracts, exceptions, documentation, autoloading, and tests.
