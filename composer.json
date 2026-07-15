@@ -1,0 +1,19 @@
+{
+  "name": "foundwell/sdk-php",
+  "description": "Official PHP SDK for connecting Foundwell applications to the Foundwell Platform.",
+  "type": "library",
+  "license": "proprietary",
+  "require": {
+    "php": ">=7.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "Foundwell\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Foundwell\\Tests\\": "tests/"
+    }
+  }
+}
