@@ -16,6 +16,7 @@ final class Config
     private int $requestTimeout;
     private int $maxAttempts;
     private int $retryDelayMilliseconds;
+    private ?string $licenseCachePath;
 
     public function __construct(
         string $baseUrl,
@@ -25,7 +26,8 @@ final class Config
         int $connectTimeout = 5,
         int $requestTimeout = 15,
         int $maxAttempts = 3,
-        int $retryDelayMilliseconds = 200
+        int $retryDelayMilliseconds = 200,
+        ?string $licenseCachePath = null
     ) {
         $baseUrl = rtrim(trim($baseUrl), '/');
         $product = trim($product);
@@ -61,6 +63,8 @@ final class Config
         $this->requestTimeout = $requestTimeout;
         $this->maxAttempts = $maxAttempts;
         $this->retryDelayMilliseconds = $retryDelayMilliseconds;
+        $licenseCachePath = $licenseCachePath !== null ? trim($licenseCachePath) : null;
+        $this->licenseCachePath = $licenseCachePath !== '' ? $licenseCachePath : null;
     }
 
     public function baseUrl(): string { return $this->baseUrl; }
@@ -71,4 +75,5 @@ final class Config
     public function requestTimeout(): int { return $this->requestTimeout; }
     public function maxAttempts(): int { return $this->maxAttempts; }
     public function retryDelayMilliseconds(): int { return $this->retryDelayMilliseconds; }
+    public function licenseCachePath(): ?string { return $this->licenseCachePath; }
 }

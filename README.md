@@ -63,3 +63,28 @@ php tests/networking.php
 ```
 
 The networking tests use an in-memory fake transport and do not contact the live Platform.
+
+
+## Licensing
+
+```php
+use Foundwell\Client;
+use Foundwell\Config;
+use Foundwell\Licensing\InstallationIdentity;
+
+$config = new Config(
+    'https://license.foundwellmedia.com',
+    'stationos',
+    '0.2.0-alpha',
+    null, 5, 15, 3, 200,
+    '/var/lib/stationos/foundwell-license.json'
+);
+
+$identity = new InstallationIdentity($stableFingerprint, gethostname());
+$foundwell = new Client($config, null, null, $identity);
+
+$activation = $foundwell->licenses()->activate($licenseKey);
+$validation = $foundwell->licenses()->validate($licenseKey);
+```
+
+Successful activation and validation responses are cached with an integrity signature. The cache is used only when the Platform cannot be reached and only while the server-provided grace period remains valid. Explicit license rejection is never overridden by cached data.

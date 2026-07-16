@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0-alpha
+
+- Added licensing activation, validation, and deactivation services.
+- Added typed license results and installation identity.
+- Added integrity-protected offline validation cache.
+- Added activation-limit and license-rejection exceptions.
+- Added mock licensing tests and examples.
+
 ## 0.2.0-alpha — Networking Layer
 
 - Added immutable HTTP request and response objects.
