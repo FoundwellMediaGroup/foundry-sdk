@@ -114,6 +114,7 @@ final class HttpClient
         }
 
         $message = 'Foundwell Platform returned HTTP ' . $response->statusCode() . '.';
+        $payload = [];
         try {
             $payload = $response->json();
             if (isset($payload['message']) && is_string($payload['message'])) {
@@ -127,11 +128,11 @@ final class HttpClient
 
         $requestId = $response->header('X-Request-ID');
         if ($response->statusCode() === 401) {
-            throw new AuthenticationException($message, 401, $requestId);
+            throw new AuthenticationException($message, 401, $requestId, null, $payload);
         }
         if ($response->statusCode() === 403) {
-            throw new AuthorizationException($message, 403, $requestId);
+            throw new AuthorizationException($message, 403, $requestId, null, $payload);
         }
-        throw new ApiException($message, $response->statusCode(), $requestId);
+        throw new ApiException($message, $response->statusCode(), $requestId, null, $payload);
     }
 }

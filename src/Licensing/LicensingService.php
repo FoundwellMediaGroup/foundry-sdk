@@ -57,6 +57,12 @@ final class LicensingService implements LicensingInterface
                 'fingerprint' => $identity->fingerprint(),
                 'version' => $this->config->version(),
             ]);
+        } catch (LicenseRejectedException $exception) {
+            $payload = $exception->payload();
+            if ($payload !== []) {
+                return LicenseResult::fromPayload($payload);
+            }
+            throw $exception;
         } catch (ConnectionException | TimeoutException $exception) {
             $cached = $this->cache->load($licenseKey, $identity->fingerprint());
             if ($cached !== null) {
@@ -90,10 +96,10 @@ final class LicensingService implements LicensingInterface
         try {
             return $this->http->request('POST', $path, $payload)->json();
         } catch (AuthorizationException $exception) {
-            throw new LicenseRejectedException($exception->getMessage(), $exception->getCode(), $exception->requestId(), $exception);
+            throw new LicenseRejectedException($exception->getMessage(), $exception->getCode(), $exception->requestId(), $exception, $exception->payload());
         } catch (ApiException $exception) {
             if ($exception->getCode() === 409) {
-                throw new ActivationLimitException($exception->getMessage(), 409, $exception->requestId(), $exception);
+                throw new ActivationLimitException($exception->getMessage(), 409, $exception->requestId(), $exception, $exception->payload());
             }
             throw $exception;
         }

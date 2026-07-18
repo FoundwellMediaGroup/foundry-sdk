@@ -60,6 +60,20 @@ $cached = $offlineClient->licenses()->validate('FW-TEST-LICENSE');
 licensingAssert($cached->isValid(), 'Cached validation should remain valid during grace.');
 licensingAssert($cached->fromCache(), 'Offline validation should identify cached result.');
 
+
+$suspendedTransport = new FakeTransport([
+    new Response(403, ['X-Request-ID' => 'suspended-ref'], json_encode([
+        'status' => 'suspended',
+        'valid' => false,
+        'message' => 'This license has been suspended.',
+        'request_id' => 'suspended-body',
+    ], JSON_UNESCAPED_SLASHES)),
+]);
+$suspended = (new Client($config, $suspendedTransport, null, $identity))->licenses()->validate('FW-TEST-LICENSE');
+licensingAssert(!$suspended->isValid(), 'Suspended validation should be invalid.');
+licensingAssert($suspended->status() === 'suspended', 'Suspended status should be preserved from a 403 response.');
+licensingAssert(($suspended->raw()['message'] ?? null) === 'This license has been suspended.', 'Suspended message should be preserved.');
+
 $limitTransport = new FakeTransport([
     new Response(409, ['X-Request-ID' => 'limit-ref'], '{"status":"limit_reached","message":"Activation limit reached"}'),
 ]);

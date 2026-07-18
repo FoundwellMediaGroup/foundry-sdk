@@ -1,3 +1,9 @@
+## 0.3.1-alpha — License Rejection Payloads
+
+- Preserve structured JSON payloads on HTTP errors.
+- Return suspended, revoked, expired, invalid, and not-activated validation responses as `LicenseResult` objects.
+- Keep transport failures eligible for offline-cache fallback.
+
 # Changelog
 
 ## 0.3.0-alpha

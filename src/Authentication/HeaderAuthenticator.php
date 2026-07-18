@@ -40,6 +40,6 @@ final class HeaderAuthenticator
 
 final class ClientVersion
 {
-    public const VERSION = '0.2.0-alpha';
+    public const VERSION = '0.3.1-alpha';
     private function __construct() {}
 }

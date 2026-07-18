@@ -2,7 +2,7 @@
 
 Official PHP SDK for connecting Foundwell applications to the Foundwell Platform.
 
-**Version:** 0.2.0-alpha  
+**Version:** 0.3.1-alpha  
 **PHP:** 7.4 or newer  
 **Dependencies:** none beyond PHP and the cURL extension for live requests
 
