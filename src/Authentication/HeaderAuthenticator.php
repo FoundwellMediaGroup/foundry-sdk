@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Foundwell\Authentication;
 
 use Foundwell\Config;
+use Foundwell\Version;
 
 final class HeaderAuthenticator
 {
@@ -23,7 +24,7 @@ final class HeaderAuthenticator
         $headers['Accept'] = 'application/json';
         $headers['User-Agent'] = sprintf(
             'Foundwell-SDK-PHP/%s %s/%s',
-            ClientVersion::VERSION,
+            Version::current(),
             $this->config->product(),
             $this->config->version()
         );
@@ -36,10 +37,4 @@ final class HeaderAuthenticator
 
         return $headers;
     }
-}
-
-final class ClientVersion
-{
-    public const VERSION = '0.3.1-alpha';
-    private function __construct() {}
 }

@@ -1,3 +1,12 @@
+## 0.3.2-alpha — Foundation Cleanup
+
+- Added a central `Version` service backed by the root `VERSION` file.
+- Removed duplicate hardcoded SDK version values.
+- Corrected stale licensing documentation and roadmap status.
+- Replaced assertion-dependent smoke checks with reliable runtime assertions.
+- Added version and User-Agent synchronization coverage.
+- Refreshed examples and test product-version fixtures.
+
 ## 0.3.1-alpha — License Rejection Payloads
 
 - Preserve structured JSON payloads on HTTP errors.

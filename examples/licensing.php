@@ -11,7 +11,7 @@ use Foundwell\Licensing\InstallationIdentity;
 $config = new Config(
     'https://license.foundwellmedia.com',
     'stationos',
-    '0.2.0-alpha',
+    '0.3.0-alpha',
     null,
     5,
     15,

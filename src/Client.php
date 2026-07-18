@@ -38,5 +38,5 @@ final class Client
     public function config(): Config { return $this->config; }
     public function http(): HttpClient { return $this->http; }
     public function licenses(): LicensingService { return $this->licensing; }
-    public function sdkVersion(): string { return '0.3.0-alpha'; }
+    public function sdkVersion(): string { return Version::current(); }
 }

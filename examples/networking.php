@@ -10,7 +10,7 @@ use Foundwell\Config;
 $config = new Config(
     'https://license.foundwellmedia.com',
     'stationos',
-    '0.1.0-alpha',
+    '0.3.0-alpha',
     getenv('FOUNDWELL_API_KEY') ?: null
 );
 

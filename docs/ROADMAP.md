@@ -18,22 +18,24 @@
 - Logging hooks
 - Request ID propagation
 
-## v0.3.x — Licensing
+## v0.3.x — Licensing — Complete
 
 - Activation
 - Validation
 - Deactivation
-- Typed license models
+- Typed license results
+- Structured rejection states
 - Integrity-protected offline cache
+- Offline grace handling
 
-## v0.4.x — Updates and Downloads
+## v0.4.x — Updates and Downloads — Planned
 
 - Release manifests
 - Channel selection
 - Checksums
 - Secure downloads
 
-## v0.5.x — Health and Telemetry
+## v0.5.x — Health and Telemetry — Planned
 
 - Health reports
 - Installation telemetry

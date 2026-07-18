@@ -21,7 +21,7 @@ function licensingAssert(bool $condition, string $message): void
 }
 
 $cache = sys_get_temp_dir() . '/foundwell-sdk-license-' . bin2hex(random_bytes(4)) . '.json';
-$config = new Config('https://license.foundwellmedia.com', 'stationos', '0.2.0-alpha', null, 5, 15, 1, 0, $cache);
+$config = new Config('https://license.foundwellmedia.com', 'stationos', '0.3.0-alpha', null, 5, 15, 1, 0, $cache);
 $identity = new InstallationIdentity('test-installation-fingerprint-0001', 'station.example.com');
 $transport = new FakeTransport([
     new Response(200, ['X-Request-ID' => 'activation-http'], json_encode([
@@ -47,7 +47,7 @@ $body = json_decode((string) $request->body(), true);
 licensingAssert($body['product'] === 'stationos', 'Product slug should come from configuration.');
 licensingAssert($body['fingerprint'] === $identity->fingerprint(), 'Fingerprint should be sent.');
 licensingAssert($body['hostname'] === 'station.example.com', 'Hostname should be sent.');
-licensingAssert($body['version'] === '0.2.0-alpha', 'Product version should be sent.');
+licensingAssert($body['version'] === '0.3.0-alpha', 'Product version should be sent.');
 
 $offlineTransport = new class implements \Foundwell\Contracts\TransportInterface {
     public function send(\Foundwell\Http\Request $request): \Foundwell\Http\Response

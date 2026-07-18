@@ -18,7 +18,7 @@ function assertTrue(bool $condition, string $message): void
     }
 }
 
-$config = new Config('https://license.foundwellmedia.com', 'stationos', '0.1.0-alpha', 'secret', 5, 15, 3, 0);
+$config = new Config('https://license.foundwellmedia.com', 'stationos', '0.3.0-alpha', 'secret', 5, 15, 3, 0);
 $transport = new FakeTransport([
     new Response(503, ['X-Request-ID' => 'retry-one'], '{"error":"busy"}'),
     new Response(200, ['X-Request-ID' => 'success-one'], '{"status":"ok"}'),
