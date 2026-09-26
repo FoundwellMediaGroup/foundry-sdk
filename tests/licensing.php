@@ -60,6 +60,13 @@ $cached = $offlineClient->licenses()->validate('FW-TEST-LICENSE');
 licensingAssert($cached->isValid(), 'Cached validation should remain valid during grace.');
 licensingAssert($cached->fromCache(), 'Offline validation should identify cached result.');
 
+$validationTransport = new FakeTransport([
+    new Response(200, ['X-Request-ID' => 'validation-http'], '{"status":"active","valid":true,"activation_id":"activation-uuid"}'),
+]);
+(new Client($config, $validationTransport, null, $identity))->licenses()->validate('FW-TEST-LICENSE');
+$validationBody = json_decode((string) $validationTransport->requests()[0]->body(), true);
+licensingAssert(($validationBody['hostname'] ?? null) === 'station.example.com', 'Validation should refresh the public installation hostname.');
+
 
 $suspendedTransport = new FakeTransport([
     new Response(403, ['X-Request-ID' => 'suspended-ref'], json_encode([
