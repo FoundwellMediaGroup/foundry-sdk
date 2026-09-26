@@ -1,3 +1,9 @@
+## 0.3.3-alpha — Installation hostname refresh
+
+- Send the current public installation hostname during every license validation.
+- Allow Cloud activation records to replace stale operating-system hostnames after deployment changes.
+- Added regression coverage for validation hostname reporting.
+
 ## 0.3.2-alpha — Foundation Cleanup
 
 - Added a central `Version` service backed by the root `VERSION` file.
