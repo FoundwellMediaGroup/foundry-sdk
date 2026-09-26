@@ -55,6 +55,7 @@ final class LicensingService implements LicensingInterface
                 'license_key' => $this->licenseKey($licenseKey),
                 'product' => $this->config->product(),
                 'fingerprint' => $identity->fingerprint(),
+                'hostname' => $identity->hostname(),
                 'version' => $this->config->version(),
             ]);
         } catch (LicenseRejectedException $exception) {
